@@ -1,24 +1,32 @@
 # react-templates
 
-Two interactive landing-page sections for React, written in TypeScript with CSS Modules and no runtime dependencies besides React.
+Reusable React widgets for landing pages. Each widget is a self-contained, props-driven section you can drop into a marketing page, restyle with CSS variables, and wire to your own data.
 
-| Component | What it is |
-| --- | --- |
-| `AvailabilityPicker` | A day-by-day schedule where visitors click free blocks to build a shareable booking link. |
-| `QuarterTimeline` | A horizontal roadmap by quarter. Each tile opens a detail modal with previous/next navigation. |
+TypeScript, CSS Modules, no runtime dependencies besides React.
 
-Both are original designs *inspired by* common SaaS landing-page patterns. They contain no third-party branding, fonts or assets, and all demo content is placeholder.
+## Widgets
 
-## Run the demo
+| Widget | What it is | Docs |
+| --- | --- | --- |
+| `AvailabilityPicker` | Schedule card where visitors click free time blocks to build a booking link | [src/AvailabilityPicker](src/AvailabilityPicker/README.md) |
+| `QuarterTimeline` | Horizontal roadmap by quarter with tiles that open a detail modal | [src/QuarterTimeline](src/QuarterTimeline/README.md) |
+
+More to come. See [Adding a widget](#adding-a-widget).
+
+## Quick start
 
 ```bash
+git clone https://github.com/zaelyn-ng/react-templates
+cd react-templates
 npm install
-npm run dev
+npm run dev        # demo app with every widget
 ```
 
-## Use in your project
+## Using a widget
 
-Copy `src/AvailabilityPicker` and/or `src/QuarterTimeline` into your app (each folder is self-contained), or build the package and import it:
+**Copy and paste (simplest).** Each widget folder in `src/` is self-contained. Copy the folder into your app, import the component, and edit it freely.
+
+**As a package.** Build the library and import from it:
 
 ```bash
 npm run build
@@ -29,72 +37,31 @@ import { AvailabilityPicker, QuarterTimeline } from "react-templates";
 import "react-templates/style.css";
 ```
 
-### `AvailabilityPicker`
+## Principles
 
-```tsx
-<AvailabilityPicker
-  schedule={{
-    Mon: [
-      { start: 9, end: 10, title: "Standup", status: "busy" },
-      { start: 14, end: 15, status: "free" },
-    ],
-  }}
-  now={{ day: "Mon", hour: 13.4 }}
-  onChange={(slots) => console.log(slots)}
-  buildLink={(slots) => `https://book.example.com/me?s=${slots.length}`}
-/>
-```
+- **Props over hard-coding.** Content, labels and data come in as props. Nothing is baked into the markup.
+- **Themeable.** Colors and surfaces are CSS custom properties, scoped per widget (`--as-*`, `--qt-*`). Override them on the `className` you pass in.
+- **Fonts and layout are yours.** Widgets inherit `font-family` and fill their container. No global styles, no resets.
+- **Accessible by default.** Real buttons, keyboard support, native `<dialog>` for modals, `prefers-reduced-motion` respected.
+- **Controlled or uncontrolled.** Stateful widgets accept `value` / `defaultValue` / `onChange`.
+- **No third-party branding.** Original designs only, with placeholder content in the demo.
 
-| Prop | Type | Notes |
-| --- | --- | --- |
-| `schedule` | `Record<string, Slot[]>` | Day label → slots. Times are decimal hours (13.5 = 1:30 PM). |
-| `startHour` / `endHour` / `hourHeight` | `number` | Visible range (default 9–18) and px per hour (56). |
-| `now` | `{ day, hour }` | Optional "now" marker. |
-| `value` / `defaultValue` / `onChange` | `SelectedSlot[]` | Controlled or uncontrolled selection. |
-| `buildLink` / `onCopyLink` | function | Customise the generated link and react to copy. |
-| `eyebrow` / `heading` / `className` | | Text and styling hooks. |
+## Adding a widget
 
-### `QuarterTimeline`
+1. Create `src/MyWidget/` with `index.tsx`, `types.ts` and `styles.module.css`.
+2. Scope theme variables with a short prefix (e.g. `--mw-*`) and document them in `src/MyWidget/README.md`.
+3. Export it and its types from `src/index.ts`.
+4. Add an example with placeholder data to `demo/main.tsx`.
+5. Run `npm run typecheck && npm run build`.
 
-```tsx
-<QuarterTimeline
-  quarters={[
-    {
-      name: "Q3", year: "2026", state: "now",
-      items: [{
-        title: "AI agent templates", icon: "star", status: "progress",
-        owner: "AI", date: "Sep 15",
-        description: "One-click agents with an editable prompt.",
-        why: "Automate the week without a new tool.",
-      }],
-    },
-  ]}
-  onFollow={(item, following) => {}}
-/>
-```
+## Scripts
 
-`icon` accepts a built-in name (`bolt`, `heart`, `code`, `rocket`, `doc`, `cal`, `chat`, `star`) or your own React element. `status` is `shipped`, `progress` or `planned`. `state` is `done`, `now` or `upcoming`.
-
-The modal uses the native `<dialog>` element, so you get focus trapping, Esc to close and focus restore for free. Arrow keys move between items.
-
-## Theming
-
-Override the CSS custom properties on the component's `className`:
-
-```css
-.my-timeline { --qt-accent: #0f766e; --qt-tile: #f3f4f6; }
-.my-picker   { --as-bg: #0f172a; --as-selected: #38bdf8; }
-```
-
-Fonts are inherited from your page.
-
-## Deploy the demo to GitHub Pages
-
-```bash
-npm run build:demo   # outputs demo-dist/
-```
-
-Serve `demo-dist/` with any static host or a Pages workflow.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the demo app |
+| `npm run build` | Typecheck and build the library to `dist/` |
+| `npm run build:demo` | Build the demo to `demo-dist/` for static hosting |
+| `npm run typecheck` | TypeScript check only |
 
 ## License
 

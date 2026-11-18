@@ -4,6 +4,8 @@ Reusable React widgets for landing pages. Each widget is a self-contained, props
 
 TypeScript, CSS Modules, no runtime dependencies besides React.
 
+**[Live demo →](https://zaelyn-ng.github.io/react-templates/)**
+
 ## Widgets
 
 | Widget | What it is | Docs |

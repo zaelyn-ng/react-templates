@@ -1,52 +1,23 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { AvailabilityPicker, QuarterTimeline } from "../src";
-import type { Quarter, Schedule } from "../src";
+import { PillsToDots, QuarterTimeline } from "../src";
+import type { PillItem, Quarter } from "../src";
 
-const schedule: Schedule = {
-  Mon: [
-    { start: 9, end: 10, title: "Team standup", status: "busy" },
-    { start: 10, end: 12, title: "Focus time", status: "busy" },
-    { start: 12, end: 13, title: "Lunch", status: "busy" },
-    { start: 13, end: 14, title: "1:1", status: "busy" },
-    { start: 14, end: 15, status: "free" },
-    { start: 15, end: 16, title: "Launch sync", status: "busy" },
-    { start: 16, end: 18, status: "free" },
-  ],
-  Tue: [
-    { start: 9, end: 10.5, title: "Design review", status: "busy" },
-    { start: 10.5, end: 12, status: "free" },
-    { start: 12, end: 13, title: "Lunch", status: "busy" },
-    { start: 13, end: 14, status: "free" },
-    { start: 14, end: 16, title: "Workshop", status: "busy" },
-    { start: 16, end: 17, status: "free" },
-    { start: 17, end: 18, title: "Inbox zero", status: "busy" },
-  ],
-  Wed: [
-    { start: 9, end: 11, status: "free" },
-    { start: 11, end: 12, title: "Customer call", status: "busy" },
-    { start: 12, end: 13, title: "Lunch", status: "busy" },
-    { start: 13, end: 15, title: "Focus time", status: "busy" },
-    { start: 15, end: 16, status: "free" },
-    { start: 16, end: 17, title: "Planning", status: "busy" },
-  ],
-  Thu: [
-    { start: 9, end: 9.5, title: "Standup", status: "busy" },
-    { start: 9.5, end: 11, status: "free" },
-    { start: 11, end: 12, title: "Interview", status: "busy" },
-    { start: 12, end: 13, title: "Lunch", status: "busy" },
-    { start: 13, end: 14, status: "free" },
-    { start: 14, end: 15.5, title: "Roadmap", status: "busy" },
-    { start: 15.5, end: 18, status: "free" },
-  ],
-  Fri: [
-    { start: 9, end: 10, status: "free" },
-    { start: 10, end: 11, title: "Demo prep", status: "busy" },
-    { start: 11, end: 12, status: "free" },
-    { start: 12, end: 13, title: "Lunch", status: "busy" },
-    { start: 13, end: 16, title: "Focus time", status: "busy" },
-  ],
-};
+const pillItems: PillItem[] = [
+  { label: "strategy", icon: "plus" },
+  { label: "research", icon: "search" },
+  { label: "prototyping", icon: "spark" },
+  { label: "design systems", icon: "layers" },
+  { label: "automation", icon: "chip" },
+  { label: "analytics", icon: "chart" },
+  { label: "integrations", icon: "link" },
+  { label: "ai agents", icon: "spark" },
+  { label: "data pipelines", icon: "wave" },
+];
+// [x fraction of panel width, y px from panel top]; each dot sits at or above its own pill's row
+const dotPositions: [number, number][] = [
+  [0.84, 46], [0.22, 70], [0.55, 110], [0.85, 150], [0.18, 190], [0.6, 235], [0.3, 290], [0.8, 300], [0.5, 380],
+];
 
 const quarters: Quarter[] = [
   { name: "Q1", year: "2026", state: "done", items: [
@@ -74,13 +45,22 @@ const page = { maxWidth: 1180, margin: "0 auto", padding: "0 24px" } as const;
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <div style={{ fontFamily: "Poppins, system-ui, sans-serif", background: "#fff" }}>
+      <PillsToDots
+        items={pillItems}
+        dotPositions={dotPositions}
+        heading="Your headline goes here, in two or three lines."
+        description="A short supporting sentence for the hero. Replace this placeholder copy with your own."
+        actions={
+          <a
+            href="https://github.com/zaelyn-ng/react-templates"
+            style={{ display: "inline-flex", alignItems: "center", height: 44, padding: "0 22px", borderRadius: 999, background: "#ea6038", color: "#fff", textDecoration: "none", fontSize: 15 }}
+          >
+            View on GitHub
+          </a>
+        }
+      />
       <div style={{ ...page, padding: "72px 24px" }}>
         <QuarterTimeline quarters={quarters} />
-      </div>
-      <div style={{ background: "#f5f3ee", padding: "72px 24px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <AvailabilityPicker schedule={schedule} now={{ day: "Mon", hour: 13.4 }} />
-        </div>
       </div>
     </div>
   </StrictMode>,

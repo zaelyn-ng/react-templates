@@ -10,8 +10,8 @@ TypeScript, CSS Modules, no runtime dependencies besides React.
 
 | Widget | What it is | Docs |
 | --- | --- | --- |
-| `AvailabilityPicker` | Schedule card where visitors click free time blocks to build a booking link | [src/AvailabilityPicker](src/AvailabilityPicker/README.md) |
 | `QuarterTimeline` | Horizontal roadmap by quarter with tiles that open a detail modal | [src/QuarterTimeline](src/QuarterTimeline/README.md) |
+| `PillsToDots` | Scroll-driven hero: a list of pills collapses into dots, then converges into an arrow | [src/PillsToDots](src/PillsToDots/README.md) |
 
 More to come. See [Adding a widget](#adding-a-widget).
 
@@ -35,14 +35,14 @@ npm run build
 ```
 
 ```tsx
-import { AvailabilityPicker, QuarterTimeline } from "react-templates";
+import { QuarterTimeline, PillsToDots } from "react-templates";
 import "react-templates/style.css";
 ```
 
 ## Principles
 
 - **Props over hard-coding.** Content, labels and data come in as props. Nothing is baked into the markup.
-- **Themeable.** Colors and surfaces are CSS custom properties, scoped per widget (`--as-*`, `--qt-*`). Override them on the `className` you pass in.
+- **Themeable.** Colors and surfaces are CSS custom properties, scoped per widget (`--qt-*`, `--pd-*`). Override them on the `className` you pass in.
 - **Fonts and layout are yours.** Widgets inherit `font-family` and fill their container. No global styles, no resets.
 - **Accessible by default.** Real buttons, keyboard support, native `<dialog>` for modals, `prefers-reduced-motion` respected.
 - **Controlled or uncontrolled.** Stateful widgets accept `value` / `defaultValue` / `onChange`.

@@ -1,7 +1,7 @@
 {
   "name": "react-templates",
   "version": "0.1.0",
-  "description": "Two interactive landing-page sections for React: an availability picker and a quarterly roadmap timeline with a detail modal.",
+  "description": "Reusable interactive landing-page sections for React: a scroll-driven pills-to-dots hero and a quarterly roadmap timeline with a detail modal.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/ui-sections.cjs",

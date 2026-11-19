@@ -4,7 +4,7 @@ Reusable React widgets for landing pages. Each widget is a self-contained, props
 
 TypeScript, CSS Modules, no runtime dependencies besides React.
 
-**[Live demo →](https://zaelyn-ng.github.io/react-templates/)**
+**[Live docs & demos →](https://zaelyn-ng.github.io/react-templates/)** – side navigation, live previews, props and theming for every widget.
 
 ## Widgets
 
@@ -55,7 +55,7 @@ import "react-templates/style.css";
 1. Create `src/MyWidget/` with `index.tsx`, `types.ts` and `styles.module.css`.
 2. Scope theme variables with a short prefix (e.g. `--mw-*`) and document them in `src/MyWidget/README.md`.
 3. Export it and its types from `src/index.ts`.
-4. Add an example with placeholder data to `demo/main.tsx`.
+4. Add placeholder data to `demo/data.ts`, a docs entry to `demo/docs.ts` and a case in `Demo` (`demo/App.tsx`). The sidebar and page are generated from it.
 5. Run `npm run typecheck && npm run build`.
 
 ## Scripts

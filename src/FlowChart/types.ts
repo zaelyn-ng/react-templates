@@ -64,7 +64,7 @@ export interface FlowChartProps {
   feedback?: string;
   /** Legend text for dashed outlines, e.g. "In scope this quarter" */
   highlightLabel?: string;
-  /** Container width (px) below which the chart reflows into a stacked layout. Default 1040 */
+  /** Container width (px) below which the chart reflows into a stacked layout. Default 990 */
   compactBelow?: number;
   /** Called with the id of the selected box (e.g. "combine", "in-docs", "list-intake", "out-report") or null */
   onSelect?: (id: string | null) => void;

@@ -37,7 +37,7 @@ import "react-templates/style.css";
 
 ## Responsive
 
-The chart reflows by the width of **its own container** (not the window): below `compactBelow` (default 1040px) it becomes a stacked layout – stage by stage, with "feeds …" notes on linked inputs and a feedback tag at the end. Connector lines are only drawn in the wide layout.
+The chart reflows by the width of **its own container** (not the window): below `compactBelow` (default 990px) it becomes a stacked layout – stage by stage, with "feeds …" notes on linked inputs and a feedback tag at the end. Connector lines are only drawn in the wide layout.
 
 ## Interactive
 

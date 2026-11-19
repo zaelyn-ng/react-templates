@@ -42,7 +42,7 @@ export function FlowChart({
   highlightLabel,
   heading = "From inputs to outputs",
   subheading = "Tinted boxes are lists with an estimated delivery time. Grey boxes are plain notes. Click any box to follow its path.",
-  compactBelow = 1040,
+  compactBelow = 990,
   onSelect,
   className,
 }: FlowChartProps) {

@@ -19,10 +19,10 @@
 .sub { text-align: center; color: #5b6270; margin: 16px auto 48px; max-width: 560px; font-size: 16px; }
 
 .board {
-  position: relative; min-width: 1000px;
+  position: relative; min-width: 976px;
   display: grid; column-gap: 0; row-gap: 0;
   /* a | gap | b | gap | c | + | d (addon) | gap | e (stage 3) */
-  grid-template-columns: minmax(200px, 1.3fr) 40px minmax(150px, 1fr) 56px minmax(170px, 1.1fr) 46px 60px 14px minmax(290px, 1.7fr);
+  grid-template-columns: minmax(190px, 1.3fr) 40px minmax(140px, 1fr) 56px minmax(160px, 1.1fr) 46px 60px 14px minmax(270px, 1.7fr);
   grid-template-rows: auto auto auto auto;
 }
 

@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { PillsToDots, QuarterTimeline } from "../src";
-import type { PillItem, Quarter } from "../src";
+import { PillsToDots, QuarterTimeline, TeamRoadmap } from "../src";
+import type { PillItem, Quarter, RoadmapEvent, RoadmapMilestone, RoadmapTeam } from "../src";
 
 const pillItems: PillItem[] = [
   { label: "strategy", icon: "plus" },
@@ -17,6 +17,48 @@ const pillItems: PillItem[] = [
 // [x fraction of panel width, y px from panel top]; each dot sits at or above its own pill's row
 const dotPositions: [number, number][] = [
   [0.84, 46], [0.22, 70], [0.55, 110], [0.85, 150], [0.18, 190], [0.6, 235], [0.3, 290], [0.8, 300], [0.5, 380],
+];
+
+const roadmapTeams: RoadmapTeam[] = [
+  { id: "product", name: "Product" },
+  { id: "eng", name: "Engineering" },
+  { id: "design", name: "Design" },
+  { id: "gtm", name: "Go-to-market" },
+];
+const roadmapMilestones: RoadmapMilestone[] = [
+  { id: "m1", name: "Discovery" },
+  { id: "m2", name: "Foundations" },
+  { id: "m3", name: "Private beta" },
+  { id: "m4", name: "Product-market fit" },
+  { id: "m5", name: "General availability" },
+];
+const roadmapEvents: RoadmapEvent[] = [
+  { id: "p1", team: "product", type: "research", title: "Customer interviews", start: "2026-01-12", end: "2026-02-06", dependsOn: [], milestone: "m1", description: "Thirty discovery calls across target segments to map jobs, pains and current workarounds." },
+  { id: "p2", team: "product", type: "research", title: "Market sizing", start: "2026-01-26", end: "2026-02-13", dependsOn: [], milestone: "m1", description: "Top-down and bottom-up sizing to validate the opportunity." },
+  { id: "d1", team: "design", type: "research", title: "Competitive audit", start: "2026-01-19", end: "2026-02-06", dependsOn: [], milestone: "m1", description: "Teardown of six alternatives: flows, pricing signals and gaps." },
+  { id: "e1", team: "eng", type: "research", title: "Feasibility spike", start: "2026-01-26", end: "2026-02-20", dependsOn: [], milestone: "m1", description: "Prove the riskiest technical assumptions with throwaway code." },
+  { id: "p3", team: "product", type: "review", title: "Problem brief review", start: "2026-02-16", end: "2026-02-20", dependsOn: ['p1', 'p2'], milestone: "m1", description: "Leadership sign-off on the problem statement and target user." },
+  { id: "d2", team: "design", type: "design", title: "Design principles & concepts", start: "2026-02-23", end: "2026-03-20", dependsOn: ['d1', 'p3'], milestone: "m2", description: "Principles, three concept directions and early critique." },
+  { id: "e2", team: "eng", type: "build", title: "Core platform", start: "2026-03-02", end: "2026-04-17", dependsOn: ['e1', 'p3'], milestone: "m2", description: "Foundational services, data model and CI/CD." },
+  { id: "p4", team: "product", type: "design", title: "PRD & roadmap", start: "2026-02-23", end: "2026-03-13", dependsOn: ['p3'], milestone: "m2", description: "Requirements, scope cuts and a sequenced roadmap." },
+  { id: "d3", team: "design", type: "design", title: "Prototype v1", start: "2026-03-23", end: "2026-04-10", dependsOn: ['d2'], milestone: "m2", description: "Clickable prototype for usability testing." },
+  { id: "g1", team: "gtm", type: "research", title: "Positioning draft", start: "2026-03-09", end: "2026-04-03", dependsOn: ['p3'], milestone: "m2", description: "Audience, narrative and messaging hypotheses." },
+  { id: "p5", team: "product", type: "review", title: "Foundations review", start: "2026-04-20", end: "2026-04-24", dependsOn: ['e2', 'd3', 'p4'], milestone: "m2", description: "Go / no-go on investing in the beta." },
+  { id: "e3", team: "eng", type: "build", title: "Beta build", start: "2026-04-27", end: "2026-06-05", dependsOn: ['e2', 'p5'], milestone: "m3", description: "Feature-complete build for invited users." },
+  { id: "d4", team: "design", type: "design", title: "Beta UI kit", start: "2026-04-27", end: "2026-05-22", dependsOn: ['d3', 'p5'], milestone: "m3", description: "Component library and production-ready screens." },
+  { id: "g2", team: "gtm", type: "launch", title: "Beta recruitment", start: "2026-05-04", end: "2026-06-05", dependsOn: ['g1', 'p5'], milestone: "m3", description: "Waitlist, outreach and onboarding of beta accounts." },
+  { id: "e4", team: "eng", type: "review", title: "Security review", start: "2026-06-08", end: "2026-06-12", dependsOn: ['e3'], milestone: "m3", description: "Threat model and penetration test sign-off." },
+  { id: "g3", team: "gtm", type: "launch", title: "Private beta launch", start: "2026-06-15", end: "2026-06-19", dependsOn: ['e4', 'g2'], milestone: "m3", description: "Invite the first cohort and open feedback channels." },
+  { id: "p6", team: "product", type: "research", title: "Beta feedback synthesis", start: "2026-06-22", end: "2026-07-24", dependsOn: ['g3'], milestone: "m4", description: "Cluster feedback, usage and retention signals." },
+  { id: "e5", team: "eng", type: "build", title: "Iteration sprints", start: "2026-06-22", end: "2026-08-28", dependsOn: ['g3'], milestone: "m4", description: "Fast cycles on the highest-impact feedback themes." },
+  { id: "d5", team: "design", type: "design", title: "Onboarding redesign", start: "2026-07-06", end: "2026-08-14", dependsOn: ['g3'], milestone: "m4", description: "Reduce time-to-value for new accounts." },
+  { id: "g4", team: "gtm", type: "research", title: "Pricing & packaging", start: "2026-07-13", end: "2026-08-21", dependsOn: ['g3'], milestone: "m4", description: "Willingness-to-pay research and plan structure." },
+  { id: "p7", team: "product", type: "review", title: "PMF review", start: "2026-09-01", end: "2026-09-04", dependsOn: ['p6', 'e5', 'd5'], milestone: "m4", description: "Decide whether retention and demand justify launch." },
+  { id: "e6", team: "eng", type: "build", title: "Scale & hardening", start: "2026-09-07", end: "2026-10-30", dependsOn: ['p7'], milestone: "m5", description: "Load, reliability and observability work." },
+  { id: "d6", team: "design", type: "design", title: "Launch assets", start: "2026-09-07", end: "2026-10-09", dependsOn: ['p7', 'g4'], milestone: "m5", description: "Website, product tour and sales collateral." },
+  { id: "g5", team: "gtm", type: "launch", title: "GA campaign", start: "2026-10-12", end: "2026-11-20", dependsOn: ['d6', 'g4'], milestone: "m5", description: "Coordinated campaign across channels and partners." },
+  { id: "e7", team: "eng", type: "review", title: "Launch readiness review", start: "2026-11-02", end: "2026-11-06", dependsOn: ['e6'], milestone: "m5", description: "Final checklist across reliability, support and legal." },
+  { id: "g6", team: "gtm", type: "launch", title: "General availability", start: "2026-11-23", end: "2026-11-27", dependsOn: ['e7', 'g5'], milestone: "m5", description: "Open the product to everyone." },
 ];
 
 const quarters: Quarter[] = [
@@ -61,6 +103,9 @@ createRoot(document.getElementById("root")!).render(
       />
       <div style={{ ...page, padding: "72px 24px" }}>
         <QuarterTimeline quarters={quarters} />
+      </div>
+      <div style={{ ...page, padding: "72px 24px 120px" }}>
+        <TeamRoadmap teams={roadmapTeams} milestones={roadmapMilestones} events={roadmapEvents} today="2026-07-20" />
       </div>
     </div>
   </StrictMode>,

@@ -24,7 +24,7 @@ const DEFAULT_TYPES: RoadmapEventType[] = [
 type Status = "done" | "progress" | "planned";
 const STATUS: Record<Status, { label: string; color: string }> = {
   done: { label: "Done", color: "#16a34a" },
-  progress: { label: "In progress", color: "#4258f0" },
+  progress: { label: "In progress", color: "#e60000" },
   planned: { label: "Planned", color: "#9ca3af" },
 };
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -275,7 +275,7 @@ export function TeamRoadmap({
               const next = ev.filter((e) => status(e) === "planned").sort((a, b) => a.s - b.s)[0];
               return (
                 <button key={t.id} className={`${styles.tile} ${styles.team}`} onClick={() => { setScope(t.id); setTrail([]); }}>
-                  <span className={styles.status} style={{ ["--c" as string]: "#4258f0" }}>{ev.length} events</span>
+                  <span className={styles.status} style={{ ["--c" as string]: "#e60000" }}>{ev.length} events</span>
                   {ARROW}
                   <span className={styles.mono}>{t.name[0]}</span>
                   <span className={styles.t}>{t.name}</span>

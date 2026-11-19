@@ -8,7 +8,7 @@ export type { QuarterTimelineProps, Quarter, TimelineItem, IconName } from "./ty
 
 const STATUS: Record<ItemStatus, { label: string; color: string }> = {
   shipped: { label: "Shipped", color: "#16a34a" },
-  progress: { label: "In progress", color: "#4258f0" },
+  progress: { label: "In progress", color: "#e60000" },
   planned: { label: "Planned", color: "#9ca3af" },
 };
 

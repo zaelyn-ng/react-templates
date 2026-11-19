@@ -2,8 +2,8 @@
 .root {
   --qt-tile: #f5f4f0;
   --qt-ink: #181d25;
-  --qt-accent: #4258f0;
-  --qt-accent-soft: #e9ecff;
+  --qt-accent: #e60000;
+  --qt-accent-soft: #fdeaea;
   --qt-line: #d9d7d0;
   --qt-muted: #6b7280;
 
@@ -59,7 +59,7 @@
 .x { position: absolute; top: 18px; right: 18px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--qt-tile); cursor: pointer; font-size: 18px; color: var(--qt-ink); }
 .x:hover { background: #e8e6df; }
 .mbody { padding: 22px 28px 28px; }
-.box { background: var(--qt-accent-soft); border: 1px solid #d3d9ff; border-radius: 6px; padding: 16px 18px; }
+.box { background: var(--qt-accent-soft); border: 1px solid #f6cfcf; border-radius: 6px; padding: 16px 18px; }
 .box b { font-size: 13px; }
 .box p { font-size: 14px; line-height: 1.55; margin: 8px 0 0; }
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 16px; }

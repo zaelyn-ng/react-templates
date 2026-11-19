@@ -4,7 +4,7 @@ A three-stage flow diagram in the same tile style as the other widgets. Everythi
 
 | Piece | Looks like | Use it for |
 | --- | --- | --- |
-| `lists` | Blue box with rows, each with an estimated-delivery chip | A list of items that each have an ETA |
+| `lists` | Tinted box with rows, each with an estimated-delivery chip | A list of items that each have an ETA |
 | `inputs`, `combine`, `addon`, `outputs[].text` | Grey tile | Plain text items |
 | `stages[].title`, `description`, `outputs[].label`, `footer`, `feedback`, `lists[].then` | Dark one-line label | Names and short labels |
 | `highlight: true` | Dashed accent outline | Calling attention to a box (add `highlightLabel` for a legend) |
@@ -41,7 +41,7 @@ The chart reflows by the width of **its own container** (not the window): below 
 
 ## Interactive
 
-- **Click** (or Enter / Space) any box to trace its path: everything upstream and downstream is highlighted, the connecting lines turn blue and the rest dims. Click again, click empty space or press **Esc** to clear. The feedback loop lights up when it is part of the path.
+- **Click** (or Enter / Space) any box to trace its path: everything upstream and downstream is highlighted, the connecting lines turn red and the rest dims. Click again, click empty space or press **Esc** to clear. The feedback loop lights up when it is part of the path.
 - With `highlightLabel` set, the legend becomes a **Focus** toggle that dims everything that isn't dashed-outlined.
 - `onSelect(id | null)` reports the selection. Ids are `list-<id>`, `in-<id>`, `combine`, `addon`, `out-<id>` and `footer`.
 

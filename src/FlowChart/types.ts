@@ -13,7 +13,7 @@ export interface FlowListItem {
   eta: string;
 }
 
-/** A blue box that holds a list of items, each with an estimated delivery time */
+/** A tinted box that holds a list of items, each with an estimated delivery time */
 export interface FlowList {
   id: string;
   title?: string;
@@ -48,7 +48,7 @@ export interface FlowOutput {
 export interface FlowChartProps {
   /** Exactly three stages, left to right */
   stages: [FlowStage, FlowStage, FlowStage];
-  /** Stage 1 – blue boxes with timed items */
+  /** Stage 1 – tinted boxes with timed items */
   lists: FlowList[];
   /** Stage 2 – grey boxes that feed the combine box */
   inputs: FlowInput[];

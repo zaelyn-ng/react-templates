@@ -130,7 +130,7 @@ createRoot(document.getElementById("root")!).render(
         actions={
           <a
             href="https://github.com/zaelyn-ng/react-templates"
-            style={{ display: "inline-flex", alignItems: "center", height: 44, padding: "0 22px", borderRadius: 999, background: "#ea6038", color: "#fff", textDecoration: "none", fontSize: 15 }}
+            style={{ display: "inline-flex", alignItems: "center", height: 44, padding: "0 22px", borderRadius: 999, background: "#e60000", color: "#fff", textDecoration: "none", fontSize: 15 }}
           >
             View on GitHub
           </a>

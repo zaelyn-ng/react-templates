@@ -1,4 +1,4 @@
-.root{--tr-tile:#f5f4f0;--tr-ink:#181d25;--tr-accent:#4258f0;--tr-accent-soft:#e9ecff;--tr-line:#d9d7d0;--tr-muted:#6b7280;box-sizing:border-box;color:var(--tr-ink);font-family:inherit}
+.root{--tr-tile:#f5f4f0;--tr-ink:#181d25;--tr-accent:#e60000;--tr-accent-soft:#fdeaea;--tr-line:#d9d7d0;--tr-muted:#6b7280;box-sizing:border-box;color:var(--tr-ink);font-family:inherit}
 .root *,.root *::before,.root *::after{box-sizing:border-box}
 .root button{font:inherit;color:inherit;cursor:pointer}
 .title{font-weight:400;font-size:clamp(44px,7vw,84px);line-height:1.05;letter-spacing:-.03em;text-align:center;margin:0}

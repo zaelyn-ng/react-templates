@@ -2,10 +2,10 @@
 .root {
   --fc-tile: #f5f4f0;
   --fc-ink: #181d25;
-  --fc-accent: #4258f0;
-  --fc-accent-soft: #e9ecff;
-  --fc-accent-line: #d3d9ff;
-  --fc-line: #c3cbff;
+  --fc-accent: #e60000;
+  --fc-accent-soft: #fdeaea;
+  --fc-accent-line: #f6cfcf;
+  --fc-line: #f1b4b4;
   --fc-muted: #6b7280;
 
   box-sizing: border-box;
@@ -62,7 +62,7 @@
 .vertical { writing-mode: vertical-rl; display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; padding: 18px 10px; }
 .vertical strong { margin: 0 0 0 6px; }
 
-/* ---- blue list boxes ---- */
+/* ---- tinted list boxes ---- */
 .list { background: var(--fc-accent-soft); border: 1px solid var(--fc-accent-line); border-radius: 6px; padding: 8px 16px 6px; }
 .listTitle { display: block; font-size: 12px; font-weight: 600; color: var(--fc-accent); padding: 8px 0 2px; }
 .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; font-size: 14.5px; line-height: 1.35; }

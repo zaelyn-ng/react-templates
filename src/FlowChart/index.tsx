@@ -41,7 +41,7 @@ export function FlowChart({
   feedback,
   highlightLabel,
   heading = "From inputs to outputs",
-  subheading = "Blue boxes are lists with an estimated delivery time. Grey boxes are plain notes. Click any box to follow its path.",
+  subheading = "Tinted boxes are lists with an estimated delivery time. Grey boxes are plain notes. Click any box to follow its path.",
   compactBelow = 1040,
   onSelect,
   className,

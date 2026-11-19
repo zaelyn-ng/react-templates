@@ -13,6 +13,7 @@ TypeScript, CSS Modules, no runtime dependencies besides React.
 | `QuarterTimeline` | Horizontal roadmap by quarter with tiles that open a detail modal | [src/QuarterTimeline](src/QuarterTimeline/README.md) |
 | `PillsToDots` | Scroll-driven hero: a list of pills collapses into dots, then converges into an arrow | [src/PillsToDots](src/PillsToDots/README.md) |
 | `TeamRoadmap` | Multi-team roadmap: team overview → per-team quarters, milestone view, dependencies, details section | [src/TeamRoadmap](src/TeamRoadmap/README.md) |
+| `FlowChart` | Three-stage flow diagram: timed lists, text boxes, merge connectors, outputs and a feedback loop | [src/FlowChart](src/FlowChart/README.md) |
 
 More to come. See [Adding a widget](#adding-a-widget).
 
@@ -36,14 +37,14 @@ npm run build
 ```
 
 ```tsx
-import { QuarterTimeline, PillsToDots, TeamRoadmap } from "react-templates";
+import { QuarterTimeline, PillsToDots, TeamRoadmap, FlowChart } from "react-templates";
 import "react-templates/style.css";
 ```
 
 ## Principles
 
 - **Props over hard-coding.** Content, labels and data come in as props. Nothing is baked into the markup.
-- **Themeable.** Colors and surfaces are CSS custom properties, scoped per widget (`--qt-*`, `--pd-*`, `--tr-*`). Override them on the `className` you pass in.
+- **Themeable.** Colors and surfaces are CSS custom properties, scoped per widget (`--qt-*`, `--pd-*`, `--tr-*`, `--fc-*`). Override them on the `className` you pass in.
 - **Fonts and layout are yours.** Widgets inherit `font-family` and fill their container. No global styles, no resets.
 - **Accessible by default.** Real buttons, keyboard support, native `<dialog>` for modals, `prefers-reduced-motion` respected.
 - **Controlled or uncontrolled.** Stateful widgets accept `value` / `defaultValue` / `onChange`.

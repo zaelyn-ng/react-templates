@@ -11,3 +11,5 @@ export type {
   RoadmapEventType,
   IconName as RoadmapIconName,
 } from "./TeamRoadmap";
+export { FlowChart } from "./FlowChart";
+export type { FlowChartProps, FlowStage, FlowList, FlowListItem, FlowText, FlowInput, FlowOutput } from "./FlowChart";

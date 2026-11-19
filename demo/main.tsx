@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { PillsToDots, QuarterTimeline, TeamRoadmap } from "../src";
-import type { PillItem, Quarter, RoadmapEvent, RoadmapMilestone, RoadmapTeam } from "../src";
+import { PillsToDots, QuarterTimeline, TeamRoadmap, FlowChart } from "../src";
+import type { FlowChartProps, PillItem, Quarter, RoadmapEvent, RoadmapMilestone, RoadmapTeam } from "../src";
 
 const pillItems: PillItem[] = [
   { label: "strategy", icon: "plus" },
@@ -82,6 +82,41 @@ const quarters: Quarter[] = [
   ]},
 ];
 
+const flowChart: FlowChartProps = {
+  stages: [
+    { title: "Inputs", description: "What we receive, and when" },
+    { title: "Process", description: "How it comes together" },
+    { title: "Outputs", description: "What gets delivered" },
+  ],
+  lists: [
+    { id: "intake", highlight: true, then: "Validated", items: [
+      { title: "Customer research", eta: "Aug 12" },
+      { title: "Usage data export", eta: "Aug 19" },
+      { title: "Stakeholder briefs", eta: "Aug 26" },
+      { title: "Brand assets", eta: "Sep 2" },
+    ]},
+    { id: "build", items: [
+      { title: "Prototype v1", eta: "Sep 16" },
+      { title: "Usability notes", eta: "Sep 23" },
+      { title: "Final specs", eta: "Oct 7" },
+    ]},
+  ],
+  inputs: [
+    { id: "docs", highlight: true, text: "Existing documentation and decisions made so far." },
+    { id: "market", linked: false, text: "Market and competitor snapshots for context." },
+    { id: "capacity", text: "Team capacity, budget and known constraints." },
+  ],
+  combine: { id: "plan", highlight: true, title: "Working plan", text: "Everything is merged into a single plan with owners, dependencies and dates, reviewed weekly." },
+  addon: { id: "guard", title: "Guardrails & approvals" },
+  outputs: [
+    { id: "report", label: "Report", text: "A written summary of findings, decisions and open questions." },
+    { id: "dash", label: "Dashboard", text: "A live view of progress against the plan." },
+  ],
+  footer: "Quarterly review",
+  feedback: "Lessons learned",
+  highlightLabel: "In scope this quarter",
+};
+
 const page = { maxWidth: 1180, margin: "0 auto", padding: "0 24px" } as const;
 
 createRoot(document.getElementById("root")!).render(
@@ -106,6 +141,9 @@ createRoot(document.getElementById("root")!).render(
       </div>
       <div style={{ ...page, padding: "72px 24px 120px" }}>
         <TeamRoadmap teams={roadmapTeams} milestones={roadmapMilestones} events={roadmapEvents} today="2026-07-20" />
+      </div>
+      <div style={{ ...page, maxWidth: 1280, padding: "72px 24px 120px" }}>
+        <FlowChart {...flowChart} />
       </div>
     </div>
   </StrictMode>,
